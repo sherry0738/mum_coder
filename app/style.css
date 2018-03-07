@@ -1,11 +1,14 @@
 
 body {
-  background-color: mistyrose;
+  background-color: white;
+  /* background-image: url("https://c1.staticflickr.com/3/2944/15192879329_9052a4812b_b.jpg"); */
+  /* opacity: 0.5; */
+  font-family: 'Roboto', sans-serif;
 }
 
 header {
-  background-color: #f5f5f5;
+  /* background-color: #cccccc; */
   font-size: 25px;
   padding: 2px;
-}
+} 
 

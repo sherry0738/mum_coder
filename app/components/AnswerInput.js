@@ -19,7 +19,7 @@ export default class AnswerInput extends React.Component {
     handleAnswerClick(event) {
 
         let serviceUrl = 'http://localhost:3000/details'
-        //let serviceUrl = 'http://ec2-13-211-164-23.ap-southeast-2.compute.amazonaws.com:3000/details'
+        //let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/details'
         fetch(serviceUrl, {
             method: 'POST',
             headers: {
@@ -65,17 +65,17 @@ export default class AnswerInput extends React.Component {
         const spanClass = charsLeft < 20 ? 'answerInput_span--warning' : ''
 
         return (
-            <div className="answerInput">
-                <input
-                    className="ansInputEmail_textarea"
-                    placeholder="email"
-                    onChange={this.emailForAIChange}></input>
+            <div className="answerInput">            
                 <textarea
                     className="answerInput_textarea"
-                    placeholder="answer this question here ..."                 
+                    placeholder="Answer this question here ..."                 
                     onChange={this.ansInputTextChange}></textarea>
+                    <input
+                    className="ansInputEmail_textarea"
+                    placeholder="Your email"
+                    onChange={this.emailForAIChange}></input>
                 <footer className="answerInput_footer">
-                    <span className={spanClass} className="answerInput_count">{charsLeft}</span>
+                    {/* <span className={spanClass} className="answerInput_count">{charsLeft}</span> */}
                    
                     {/* <span className="answerInput_span--warning">{maxTextLength - answer.length}</span> */}
                     <button onClick={this.handleAnswerClick} disabled={isDisabled} className="answerInput_save" >Submit</button>

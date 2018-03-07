@@ -2,6 +2,8 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 //import { withStyles } from 'material-ui/styles';
 //import MenuItem from 'material-ui/Menu/MenuItem';
+import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
+//import FlatButton from "material-ui/FlatButton";
 import TextField from 'material-ui/TextField';
 import './QueInput.scss'
 import RaisedButton from 'material-ui/RaisedButton';
@@ -26,7 +28,7 @@ export default class QueInput extends React.Component {
   handleQuestionClick(event) {
 
     let serviceUrl = 'http://localhost:3000/question'
-    //let serviceUrl = 'http://ec2-13-211-164-23.ap-southeast-2.compute.amazonaws.com:3000/question'
+    //let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/question'
     fetch(serviceUrl, {
       method: 'POST',
       headers: {
@@ -67,52 +69,67 @@ export default class QueInput extends React.Component {
   render() {
     return (
       <div className="queInput-textField-container">
-        <h5>Post your question here:</h5>
-
-        <form>
-          <div className="textfield-grid-container">
-            <div>
-              <TextField
-                id=""
-                label=""
-                placeholder="Question Title"
-                className="queTitle-textField"
-                value={this.state.queTitle}
-                onChange={this.titleTextChange}
-                margin="normal"
-              />
-            </div>
-            <div>
-              <TextField
-                id="multiline-flexible"
-                label="Multiline"
-                placeholder="Question Descrition"
-                value={this.state.queDescription}
-                onChange={this.desTextChange}
-                className="queDescription-textField"
-                margin="normal"
-              />
-            </div>
-            <div>
-              <TextField
-                required
-                id="required"
-                label="Required"
-                placeholder="email"
-                defaultValue=""
-                onChange={this.emailForQIChange}
-                className="queInputEmail-textField"
-                margin="normal"
-              />
-            </div>
-            <div>
-              <RaisedButton className="queInput-Btn"
-                onClick={this.handleQuestionClick}
-                style={{ width: 50, marginRight: 5 }}>Save
+        <Card className="queInput-card-panel">
+          <CardHeader
+            title="Got a question? Post it here" 
+            actAsExpander={true}
+            showExpandableButton={true}
+            className="queInput-cardHeader-title"
+            titleStyle={{
+              fontSize: '20px',
+              color: 'green',
+            }}
+          />
+          <CardText expandable={true} >
+            <form>
+              <div className="textfield-grid-container">
+                <div>
+                  <TextField
+                    id=""
+                    label=""
+                    hintText="Question Title"
+                    errorText="This field is required"
+                    className="queTitle-textField"
+                    value={this.state.queTitle}
+                    onChange={this.titleTextChange}
+                    margin="normal"
+                  />
+                </div>
+                <div>
+                  <TextField
+                    id="multiline-flexible"
+                    label="Multiline"
+                    hintText="Question Descrition"
+                    errorText="This field is required"
+                    value={this.state.queDescription}
+                    onChange={this.desTextChange}
+                    className="queDescription-textField"
+                    margin="normal"
+                  />
+                </div>
+                <div>
+                  <TextField
+                    required
+                    id="required"
+                    label="Required"
+                    hintText="email"
+                    errorText="This field is required"
+                    defaultValue=""
+                    onChange={this.emailForQIChange}
+                    className="queInputEmail-textField"
+                    margin="normal"
+                  />
+                </div>
+                <div>
+                  <RaisedButton className="queInput-Btn"
+                    onClick={this.handleQuestionClick}
+                    style={{ width: 50, marginRight: 5 }}>Save
               </RaisedButton>
-            </div>
-          </div>
-        </form>
+                </div>
+              </div>
+            </form>
+          </CardText>
+        </Card>
       </div>
     );
   }

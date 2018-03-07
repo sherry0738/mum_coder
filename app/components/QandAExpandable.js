@@ -15,32 +15,32 @@ class QandAExpandable extends React.Component {
   render() {
     return (
       <div>
-      <h5>Recent Asked Questions</h5>
-      <Card className="card_panel">
-        <CardHeader
-          title= {`Question:  ${this.props.question.title}`}
-          subtitle={`Description: ${this.props.question.description} (${this.props.question.answer.length} answers)`}
-          actAsExpander={true}
-          showExpandableButton={true}
-          style={{
-            fontSize: '40px',
-          }}
-        />
-        {/* <CardActions expandable={true}>
+        
+        <Card className="card_panel">
+          <CardHeader
+            title={`Question:  ${this.props.question.title} (${this.props.question.answers.length} answers)`}
+            subtitle={`Description: ${this.props.question.description}`}
+            actAsExpander={true}
+            showExpandableButton={true}
+            titleStyle={{
+              fontSize: '18px',
+            }}
+          />
+          {/* <CardActions expandable={true}>
           <FlatButton>Answer this question</FlatButton>
 
         </CardActions> */}
 
-        {
-          this.props.cardAnswers.map((item, index) => {
-            return (
-
-              <CardText expandable={true} > {item.user}: {item.answer} </CardText>
+          {
+            this.props.cardAnswers.map((item, index) => {
+              return (
+                
+                <CardText expandable={true} > {item.user}: {item.answer} </CardText>
 
             )
           })}
         <AnswerInput questionId={this.props.questionId} />
-      </Card>
+        </Card>
       </div>
     );
   }
