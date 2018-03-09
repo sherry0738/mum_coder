@@ -14,8 +14,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let serviceUrl = 'http://localhost:3000/details'
-    //let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/details'
+    //let serviceUrl = 'http://localhost:3000/details'
+    let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/details'
     fetch(serviceUrl)
       .then(res => res.json())
       .then(res => {

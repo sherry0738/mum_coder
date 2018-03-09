@@ -1,41 +1,61 @@
 import React from 'react'
 import './AnswerInput.scss'
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class AnswerInput extends React.Component {
-
     constructor(props) {
-        super(props)
+        super(props);
         this.ansInputTextChange = this.ansInputTextChange.bind(this)
         this.emailForAIChange = this.emailForAIChange.bind(this)
+        this.handleClose = this.handleClose.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             answer: '',
             emailForAnsInput: '',
-            maxTextLength: 400
-        }
-        // This binding is necessary to make `this` work in the callback
-        this.handleAnswerClick = this.handleAnswerClick.bind(this);
-    }
+            maxTextLength: 30,
+            open: false
+        };
 
-    handleAnswerClick(event) {
+    };
+    handleOpen(event) {
+        this.setState({
+            open: true
+        });
+    };
 
-        let serviceUrl = 'http://localhost:3000/details'
-        //let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/details'
+    handleClose(event) {
+        this.setState({
+            open: false
+        });
+    };
+
+    handleSubmit(event) {
+        console.log('working');
+        //let serviceUrl = 'http://localhost:3000/details'
+        const reqBody = {
+            email: this.state.emailForAnsInput,
+            username: this.state.emailForAnsInput,
+            answer: this.state.answer,
+            id: this.props.questionId
+        };
+        console.log(reqBody);
+        let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/details'
         fetch(serviceUrl, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                email: this.state.emailForAnsInput,
-                username: this.state.emailForAnsInput,
-                answer: this.state.answer,
-                id: this.props.questionId
-            })
+            body: JSON.stringify(reqBody)
         }).then(res => {
-
-                //console.log(res);
-            })
+            console.log(res);
+        })
+        this.setState({
+            open: false
+        });
     }
 
     ansInputTextChange(event) {
@@ -52,36 +72,85 @@ export default class AnswerInput extends React.Component {
     }
 
     answerQue(event) {
-        console.log("answering");
+        console.log("typing");
     }
-    render() {
-        // const maxTextLength = this.state.maxTextLength
-        // const answer = this.state.answer
 
-        //const emailForAnsInput = this.state.emailForAnsInput
-        const { maxTextLength, answer } = this.state  // maping the stucture
+    render() {
+        const {
+            maxTextLength,
+            answer
+        } = this.state // maping the stucture
         const isDisabled = answer.length <= 0 || answer.length > maxTextLength
         const charsLeft = maxTextLength - answer.length
         const spanClass = charsLeft < 20 ? 'answerInput_span--warning' : ''
+        const actions = [ <
+            FlatButton
+            label = "Cancel"
+            primary = {
+                true
+            }
+            onClick = {
+                this.handleClose
+            }
+            />, <
+            FlatButton
+            label = "Submit"
+            primary = {
+                true
+            }
+            disabled = {
+                isDisabled
+            }
+            onClick = {
+                this.handleSubmit
+            }
+            />
+        ];
+        return ( <
+            div >
+            <
+            RaisedButton label = "Post Answer"
+            onClick = {
+                this.handleOpen
+            }
+            /> <
+            Dialog title = "Write your answer here: "
+            actions = {
+                actions
+            }
+            modal = {
+                true
+            }
+            open = {
+                this.state.open
+            }
+            onRequestClose = {
+                this.handleClose
+            } >
+            <
+            textarea className = "answerInput_textarea"
+            placeholder = "Answer this question here ..."
+            onChange = {
+                this.ansInputTextChange
+            } > < /textarea> <
+            span className = {
+                spanClass
+            } > {
+                charsLeft
+            } < /span> <
+            input className = "ansInputEmail_textarea"
+            placeholder = "Your email"
+            onChange = {
+                this.emailForAIChange
+            } > < /input>
 
-        return (
-            <div className="answerInput">            
-                <textarea
-                    className="answerInput_textarea"
-                    placeholder="Answer this question here ..."                 
-                    onChange={this.ansInputTextChange}></textarea>
-                    <input
-                    className="ansInputEmail_textarea"
-                    placeholder="Your email"
-                    onChange={this.emailForAIChange}></input>
-                <footer className="answerInput_footer">
-                    {/* <span className={spanClass} className="answerInput_count">{charsLeft}</span> */}
-                   
-                    {/* <span className="answerInput_span--warning">{maxTextLength - answer.length}</span> */}
-                    <button onClick={this.handleAnswerClick} disabled={isDisabled} className="answerInput_save" >Submit</button>
-                </footer>
-            </div>
-        )
-    }
-}
 
+
+            <
+            /Dialog> <
+            /div>
+        );
+    };
+};
+
+//export default AnswerInput;

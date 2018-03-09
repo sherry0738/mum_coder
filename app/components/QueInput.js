@@ -27,8 +27,8 @@ export default class QueInput extends React.Component {
   }
   handleQuestionClick(event) {
 
-    let serviceUrl = 'http://localhost:3000/question'
-    //let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/question'
+    //let serviceUrl = 'http://localhost:3000/question'
+    let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/question'
     fetch(serviceUrl, {
       method: 'POST',
       headers: {
@@ -71,7 +71,7 @@ export default class QueInput extends React.Component {
       <div className="queInput-textField-container">
         <Card className="queInput-card-panel">
           <CardHeader
-            title="Got a question? Post it here" 
+            title="Got a question? Post it here"
             actAsExpander={true}
             showExpandableButton={true}
             className="queInput-cardHeader-title"
@@ -92,6 +92,9 @@ export default class QueInput extends React.Component {
                     className="queTitle-textField"
                     value={this.state.queTitle}
                     onChange={this.titleTextChange}
+                    multiLine={true}
+                    rows={2}
+                    rowsMax={4}
                     margin="normal"
                   />
                 </div>
@@ -104,6 +107,9 @@ export default class QueInput extends React.Component {
                     value={this.state.queDescription}
                     onChange={this.desTextChange}
                     className="queDescription-textField"
+                    multiLine={true}
+                    rows={2}
+                    rowsMax={4}
                     margin="normal"
                   />
                 </div>

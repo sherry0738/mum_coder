@@ -1,8 +1,6 @@
 import React from "react";
 import { Card, CardActions, CardHeader, CardText } from "material-ui/Card";
-import FlatButton from "material-ui/FlatButton";
 import AnswerInput from './AnswerInput'
-//import Button from "material-ui/Button";
 import './QandAExpandable.scss'
 
 class QandAExpandable extends React.Component {
@@ -11,11 +9,17 @@ class QandAExpandable extends React.Component {
     this.state = {
       cardAnswers: null
     };
-  }
+  };
+
+  userNameShow(user) {
+    return user ? user : "guest";
+  };
+
   render() {
+
     return (
       <div>
-        
+
         <Card className="card_panel">
           <CardHeader
             title={`Question:  ${this.props.question.title} (${this.props.question.answers.length} answers)`}
@@ -26,25 +30,21 @@ class QandAExpandable extends React.Component {
               fontSize: '18px',
             }}
           />
-          {/* <CardActions expandable={true}>
-          <FlatButton>Answer this question</FlatButton>
-
-        </CardActions> */}
-
           {
             this.props.cardAnswers.map((item, index) => {
-              return (
-                
-                <CardText expandable={true} > {item.user}: {item.answer} </CardText>
 
-            )
-          })}
-        <AnswerInput questionId={this.props.questionId} />
+              return (
+                <CardText expandable={true} > {this.userNameShow(item.user)}:  {item.answer}
+
+                </CardText>
+              )
+            })
+          }
+          <AnswerInput questionId={this.props.questionId} />
         </Card>
       </div>
     );
   }
 }
-
 
 export default QandAExpandable;

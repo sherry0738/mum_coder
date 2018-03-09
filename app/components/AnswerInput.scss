@@ -13,22 +13,24 @@
 
 .answerInput_textarea {
     width: 95%;
-    height: 4drem;
+    height: 6drem;
     display: block;
     margin-bottom: 0.5rem;
     margin-left: 0.5rem;
 }
-.answerInput_count{
+.answerInput_count {
     margin-left: 0.5rem;
+    float: right;
+    font-size: 11px;
 }
-.answerInput_save{
-    margin-right: 2rem;
-    margin-bottom: 0.5rem;
-}
-.answerInput_footer {
-    display: flex;
-    justify-content: space-between;
-}
+// .answerInput_save{
+//     margin-right: 2rem;
+//     margin-bottom: 0.5rem;
+// }
+// .answerInput_footer {
+//     display: flex;
+//     justify-content: space-between;
+// }
 .answerInput_span--warning {
     color: red;
 }
