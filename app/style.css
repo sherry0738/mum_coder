@@ -1,14 +1,34 @@
+.answerInput {
+  width: 100%;
+  font-size: 18px; }
+
+.ansInputEmail_textarea {
+  width: 25%;
+  height: 1rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem; }
+
+.answerInput_textarea {
+  width: 95%;
+  height: 6drem;
+  display: block;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem; }
+
+.answerInput_count {
+  margin-left: 0.5rem;
+  float: right;
+  font-size: 11px; }
+
+.answerInput_span--warning {
+  color: red; }
 
 body {
-  background-color: white;
-  /* background-image: url("https://c1.staticflickr.com/3/2944/15192879329_9052a4812b_b.jpg"); */
-  /* opacity: 0.5; */
+  background-color: #f5f5f5;
+  opacity: 0.8;
   font-family: 'Roboto', sans-serif;
-}
+  padding-left: 430px;
+  padding-right: 430px; }
 
-header {
-  /* background-color: #cccccc; */
-  font-size: 25px;
-  padding: 2px;
-} 
-
+/*# sourceMappingURL=style.css.map */
