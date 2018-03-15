@@ -15,7 +15,7 @@ export default class AnswerInput extends React.Component {
         this.state = {
             answer: '',
             emailForAnsInput: '',
-            maxTextLength: 30,
+            maxTextLength: 200,
             open: false
         };
 
@@ -76,79 +76,31 @@ export default class AnswerInput extends React.Component {
     }
 
     render() {
-        const {
-            maxTextLength,
-            answer
-        } = this.state // maping the stucture
-        const isDisabled = answer.length <= 0 || answer.length > maxTextLength
-        const charsLeft = maxTextLength - answer.length
-        const spanClass = charsLeft < 20 ? 'answerInput_span--warning' : ''
-        const actions = [ <
-            FlatButton
-            label = "Cancel"
-            primary = {
-                true
-            }
-            onClick = {
-                this.handleClose
-            }
-            />, <
-            FlatButton
-            label = "Submit"
-            primary = {
-                true
-            }
-            disabled = {
-                isDisabled
-            }
-            onClick = {
-                this.handleSubmit
-            }
-            />
+        const { maxTextLength,answer } = this.state;
+        const isDisabled = answer.length <= 0 || answer.length > maxTextLength;
+        const charsLeft = maxTextLength - answer.length;
+        const spanClass = charsLeft < 20 ? 'answerInput_span--warning' : '';
+        const actions = [ 
+        <FlatButton label = "Cancel" primary = { true } onClick = { this.handleClose } />, 
+        <FlatButton label = "Submit"  primary = { true } disabled = { isDisabled } onClick = { this.handleSubmit } />
         ];
-        return ( <
-            div >
-            <
-            RaisedButton label = "Post Answer"
-            onClick = {
-                this.handleOpen
-            }
-            /> <
-            Dialog title = "Write your answer here: "
-            actions = {
-                actions
-            }
-            modal = {
-                true
-            }
-            open = {
-                this.state.open
-            }
-            onRequestClose = {
-                this.handleClose
-            } >
-            <
-            textarea className = "answerInput_textarea"
-            placeholder = "Answer this question here ..."
-            onChange = {
-                this.ansInputTextChange
-            } > < /textarea> <
-            span className = {
-                spanClass
-            } > {
-                charsLeft
-            } < /span> <
-            input className = "ansInputEmail_textarea"
+        return ( <div>
+            <RaisedButton  label = "Post Answer"  onClick = { this.handleOpen } /> 
+            <Dialog title = "Write your answer here: "  actions = { actions } modal = { true } open = { this.state.open }
+            onRequestClose = { this.handleClose } >
+            <span style={{padding:'8px'}}>Your email:</span>
+            <textarea className = "ansInputEmail_textarea"
             placeholder = "Your email"
-            onChange = {
-                this.emailForAIChange
-            } > < /input>
-
-
-
-            <
-            /Dialog> <
-            /div>
+            onChange = { this.emailForAIChange} > </textarea>
+           
+            <span style={{padding:'8px'}}>Your answer:</span>
+            <textarea className = "answerInput_textarea"
+            placeholder = "Answer this question here ..."
+            onChange = { this.ansInputTextChange } > 
+            </textarea> 
+            <span style={{padding:'8px'}} className = {spanClass} > { charsLeft} </span> 
+            </Dialog> 
+            </div>
         );
     };
 };
