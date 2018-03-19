@@ -34,7 +34,7 @@ export default class AnswerInput extends React.Component {
 
     handleSubmit(event) {
         //console.log('working');
-        let serviceUrl = 'http://localhost:3000/details'
+        //let serviceUrl = 'http://localhost:3000/details'
         const reqBody = {
             email: this.state.emailForAnsInput,
             username: this.state.emailForAnsInput,
@@ -42,7 +42,7 @@ export default class AnswerInput extends React.Component {
             id: this.props.questionId
         };
         //console.log(reqBody);
-        //let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/details'
+        let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/details'
         fetch(serviceUrl, {
             method: 'POST',
             headers: {
