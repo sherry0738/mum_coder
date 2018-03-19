@@ -15,7 +15,7 @@ export default class AnswerInput extends React.Component {
         this.state = {
             answer: '',
             emailForAnsInput: '',
-            maxTextLength: 200,
+            maxTextLength: 400,
             open: false
         };
 
@@ -33,7 +33,7 @@ export default class AnswerInput extends React.Component {
     };
 
     handleSubmit(event) {
-        console.log('working');
+        //console.log('working');
         let serviceUrl = 'http://localhost:3000/details'
         const reqBody = {
             email: this.state.emailForAnsInput,
@@ -41,7 +41,7 @@ export default class AnswerInput extends React.Component {
             answer: this.state.answer,
             id: this.props.questionId
         };
-        console.log(reqBody);
+        //console.log(reqBody);
         //let serviceUrl = 'http://ec2-13-211-123-215.ap-southeast-2.compute.amazonaws.com:3000/details'
         fetch(serviceUrl, {
             method: 'POST',
@@ -88,7 +88,7 @@ export default class AnswerInput extends React.Component {
             <RaisedButton  label = "Post Answer"  onClick = { this.handleOpen } /> 
             <Dialog title = "Write your answer here: "  actions = { actions } modal = { true } open = { this.state.open }
             onRequestClose = { this.handleClose } >
-            <span style={{padding:'8px'}}>Your email:</span>
+            <span style={{padding:'10px'}}>Your email:</span>
             <textarea className = "ansInputEmail_textarea"
             placeholder = "Your email"
             onChange = { this.emailForAIChange} > </textarea>

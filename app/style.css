@@ -4,7 +4,7 @@
 
 .ansInputEmail_textarea {
   width: 25%;
-  height: 1rem;
+  height: 1.5rem;
   display: block;
   margin-bottom: 0.5rem;
   margin-left: 0.5rem; }
@@ -28,7 +28,31 @@ body {
   background-color: #f5f5f5;
   opacity: 0.8;
   font-family: 'Roboto', sans-serif;
-  padding-left: 430px;
-  padding-right: 430px; }
+   }
+  @media only screen and (min-width: 33.9em) { 
+    body {
+           padding-left: 50px;
+           padding-right: 50px;
+       }
+   }
+   @media only screen and (min-width: 47.9em) {
+    body {
+           padding-left: 150px;
+           padding-right: 150px;
+       }
+   }
+   @media only screen and (min-width: 61.9em) {
+    body {
+           padding-left: 250px;
+           padding-right: 250px;
+       }
+    }
+   @media only screen and (min-width: 74.9em) { 
+    body {
+           padding-left: 400px;
+           padding-right: 400px;
+       }
+
+}
 
 /*# sourceMappingURL=style.css.map */

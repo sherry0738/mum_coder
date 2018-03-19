@@ -19,7 +19,6 @@ class QandAExpandable extends React.Component {
 
     return (
       <div>
-
         <Card className="card_panel">
           <CardHeader
             title={`Question:  ${this.props.question.title} (${this.props.question.answers.length} answers)`}
@@ -32,12 +31,19 @@ class QandAExpandable extends React.Component {
           />
           {
             this.props.cardAnswers.map((item, index) => {
-
               return (
-                <CardText expandable={true} > {this.userNameShow(item.user)}:  {item.answer}
-
+                <CardText expandable={true} > 
+                  <ul class="list-unstyled">
+                    <li class="media">
+                      <img class="mr-3" src="https://conferencecloud-assets.s3.amazonaws.com/default_avatar.png" alt="user avatar" style={{ width:'10%',}}/>
+                      <div class="media-body">
+                        <h6 class="mt-0 mb-1">{this.userNameShow(item.user)} :</h6>
+                        {item.answer}
+                      </div>
+                    </li>
+                  </ul>
                 </CardText>
-              )
+              );
             })
           }
           <AnswerInput questionId={this.props.questionId} />
